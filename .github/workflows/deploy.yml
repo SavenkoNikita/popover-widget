@@ -12,10 +12,10 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: '18'
         cache: 'npm'
@@ -28,6 +28,14 @@ jobs:
 
     - name: Build project
       run: npm run build
+
+    - name: Verify build files
+      run: |
+        echo "Contents of dist folder:"
+        ls -la dist/
+        [ -f dist/index.html ] && echo "✓ index.html exists" || echo "✗ index.html missing"
+        [ -f dist/bundle.js ] && echo "✓ bundle.js exists" || echo "✗ bundle.js missing"
+        [ -f dist/styles.css ] && echo "✓ styles.css exists" || echo "✗ styles.css missing"
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
