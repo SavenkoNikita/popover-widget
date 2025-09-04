@@ -31,14 +31,6 @@ jobs:
     - name: Build project
       run: npm run build
 
-    - name: Verify build files
-      run: |
-        echo "Contents of dist folder:"
-        ls -la dist/
-        [ -f dist/index.html ] && echo "✓ index.html exists" || echo "✗ index.html missing"
-        [ -f dist/bundle.js ] && echo "✓ bundle.js exists" || echo "✗ bundle.js missing"
-        [ -f dist/styles.css ] && echo "✓ styles.css exists" || echo "✗ styles.css missing"
-
     - name: Setup Pages
       uses: actions/configure-pages@v3
 
